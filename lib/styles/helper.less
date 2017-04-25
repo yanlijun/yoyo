@@ -1,0 +1,108 @@
+:global {
+  .bb-1 {
+    border-bottom: 1px solid @primary-color;
+  }
+  .bt-1 {
+    border-top: 1px solid @primary-color;
+  }
+  .br-1 {
+    border-right: 1px solid @primary-color;
+  }
+  .bl-1 {
+    border-left: 1px solid @primary-color;
+  }
+  .text-center {
+    text-align: center;
+  }
+  .hide {
+    display: none !important;
+  }
+  .show {
+    display: block !important;
+  }
+  .invisible {
+    visibility: hidden;
+  }
+  .text-hide {
+    font: ~"0/0" a;
+    color: transparent;
+    text-shadow: none;
+    background-color: transparent;
+    border: 0;
+  }
+  // Alignment
+  .text-left {
+    text-align: left;
+  }
+  .text-right {
+    text-align: right;
+  }
+  .text-center {
+    text-align: center;
+  }
+  .text-justify {
+    text-align: justify;
+  }
+  .text-nowrap {
+    white-space: nowrap;
+  }
+
+  // Transformation
+  .text-lowercase {
+    text-transform: lowercase;
+  }
+  .text-uppercase {
+    text-transform: uppercase;
+  }
+  .text-capitalize {
+    text-transform: capitalize;
+  }
+
+  // Contextual colors
+  .text-muted {
+    color: @text-muted !important;
+  }
+  .text-primary {
+    color: @brand-primary !important;
+  }
+  .text-success {
+    color: @state-success-text !important;
+  }
+  .text-info {
+    color: @state-info-text !important;
+  }
+  .text-warning {
+    color: @state-warning-text !important;
+  }
+  .text-danger {
+    color: @state-danger-text !important;
+  }
+
+  // Contextual backgrounds
+  // For now we'll leave these alongside the text classes until v4 when we can
+  // safely shift things around (per SemVer rules).
+  .bg-primary {
+    // Given the contrast here, this is the only class to have its color inverted
+    // automatically.
+    color: #fff;
+    background-color: @brand-primary;
+
+  }
+  .bg-success {
+    background-color: @state-success-bg;
+
+  }
+  .bg-info {
+    background-color: @state-info-bg;
+
+  }
+  .bg-warning {
+    background-color: @state-warning-bg;
+
+  }
+  .bg-danger {
+    background-color: @state-danger-bg;
+
+  }
+
+}

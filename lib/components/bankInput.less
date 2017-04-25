@@ -1,0 +1,71 @@
+.bankList{
+  font-size: 0;
+  list-style: none;
+  :global{
+    li{
+      display: inline-block;
+      width: 33.333333%;
+      padding: 4px;
+      font-size: 13px;
+      vertical-align: top;
+      span {
+        display: block;
+        padding: 10px 4px;
+        border: 1px solid #eee;
+        text-align: center;
+        cursor: pointer;
+      }
+      &.active span{
+        border:1px solid #108ee9;
+      }
+    }
+  }
+}
+.charList{
+  :global{
+    a{
+      display: inline-block;
+      margin: 2px 5px;
+      padding: 2px 5px;
+      color: #666;
+      &.active{
+        font-size: 16px;
+        color: #49a9ee;
+      }
+    }
+  }
+}
+
+/*
+.bankList{
+  list-style: none;
+  :global{
+    li{
+      float: left;
+      cursor: pointer;
+      padding: 10px 4px;
+      border: 1px solid #eee;
+      margin: 5px;
+      width: 150px;
+      text-align: center;
+      &.active{
+        border:1px solid #108ee9;
+      }
+    }
+  }
+}
+.charList{
+  :global{
+    a{
+      display: inline-block;
+      margin: 2px 5px;
+      padding: 2px 5px;
+      color: #666;
+      &.active{
+        font-size: 16px;
+        color: #49a9ee;
+      }
+    }
+  }
+}
+*/

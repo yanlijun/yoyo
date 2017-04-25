@@ -1,0 +1,23 @@
+@import "variable";
+@import "helper";
+
+:global{
+  html{
+    font-size:@font-size-base;
+    font-family: "PingFang SC", "Microsoft YaHei", Helvetica, Arial, sans-serif;
+  }
+  body{
+    font-family: "PingFang SC", "Microsoft YaHei", Helvetica, Arial, sans-serif;
+  }
+  #root{
+    height: 100%;
+  }
+
+  #nprogress .bar{
+    background: @primary-color;
+  }
+  #nprogress .peg {
+    box-shadow: 0 0 10px @primary-color, 0 0 5px @primary-color;
+  }
+}
+
