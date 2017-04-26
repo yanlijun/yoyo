@@ -36,10 +36,8 @@
     "roadhog": "^0.5.2"
   },
   "scripts": {
-    "build": "roadhog build",
-    "test": "roadhog test",
     "lint": "eslint src test",
-    "fix": "eslint --fix src test",
+    "fix": "eslint --fix lib",
     "precommit": "npm run lint"
   }
 }

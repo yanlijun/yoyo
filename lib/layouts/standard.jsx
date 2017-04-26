@@ -2,7 +2,7 @@ import {Layout, Menu, Icon, Breadcrumb, Dropdown} from 'antd';
 import {Link} from 'dva/router';
 import {connect} from 'dva';
 import styles from './standard.less'
-import {logout} from '../utils/utils'
+import {logout} from '../../utils'
 
 const {Header, Sider, Content} = Layout;
 const SubMenu = Menu.SubMenu;
