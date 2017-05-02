@@ -2,13 +2,12 @@ import _ from 'lodash';
 import { Select, TreeSelect } from 'antd'
 import qs from 'qs';
 import moment from 'moment'
-import config from '../config'
 
 const Option = Select.Option;
 const TreeNode = TreeSelect.TreeNode;
 
 export function login() {
-  if (location.hostname.indexOf(config.domain) !== 0) {
+  if (location.hostname.indexOf(window.$config.domain) !== 0) {
     location.href = `http://test.passport.17shihui.com?returnUrl=${location.href}`;
   } else {
     location.href = `http://passport.17shihui.com?returnUrl=${location.href}`;
@@ -16,7 +15,7 @@ export function login() {
 }
 
 export function logout() {
-  if (location.hostname.indexOf(config.domain) !== 0) {
+  if (location.hostname.indexOf(window.$config.domain) !== 0) {
     location.href = `http://test.passport.17shihui.com/index/logout?returnUrl=${location.href}`;
   } else {
     location.href = `http://passport.17shihui.com/index/logout?returnUrl=${location.href}`;
@@ -132,7 +131,7 @@ export async function promiseToSync(promise, cb) {
  * @returns {boolean}
  */
 export function isProdEnv() {
-  return location.hostname.indexOf(config.domain) === 0;
+  return location.hostname.indexOf(window.$config.domain) === 0;
 }
 
 /**

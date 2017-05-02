@@ -10,3 +10,16 @@ components
 
 models=> only constants
 
+
+
+期望调用方式为
+
+初始化
+
+`
+import Yoyo from 'yoyo'
+const yoyo = new Yoyo('FC')
+yoyo.add(module)
+yoyo.start('#root');
+`
+
