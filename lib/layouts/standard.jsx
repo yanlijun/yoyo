@@ -1,16 +1,13 @@
 import {Layout, Menu, Icon, Breadcrumb, Dropdown} from 'antd';
 import {Link} from 'dva/router';
 import {connect} from 'dva';
-import styles from './standard.less'
+import './standard.less';
 import {logout} from '../../utils'
 
 const {Header, Sider, Content} = Layout;
 const SubMenu = Menu.SubMenu;
 const userMenus = (
   <Menu>
-    <Menu.Item>
-      <a href="javascript:;">绑定老OA系统</a>
-    </Menu.Item>
     <Menu.Item >
       <a href="javascript:;" onClick={logout}>退出</a>
     </Menu.Item>
@@ -99,15 +96,15 @@ function Standard({
   </Menu>);
   return (
     <Layout className="layout">
-      <Header className={styles.header}>
-        <Link to="/" className={styles.logo}>
+      <Header className="header">
+        <Link to="/" className="logo">
           易居社区
         </Link>
-        <div className={`${styles.companyName} ${collapsed ? styles.close : ''}`}>
+        <div className={`companyName ${collapsed ? 'close' : ''}`}>
           <span>易居社区增值服务集团</span>
         </div>
         <Icon
-          className={styles.trigger}
+          className={'trigger'}
           type={collapsed ? 'menu-unfold' : 'menu-fold'}
           onClick={toggleCollapsed}
         />
@@ -142,7 +139,7 @@ function Standard({
             }
           </Menu>
         </Sider>
-        <Content className={styles.content}>
+        <Content className={'content'}>
           <BreadcrumbConnect />
           {children}
         </Content>
