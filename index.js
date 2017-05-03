@@ -21,6 +21,11 @@ function requireModule(module, type) {
 }
 //暂时放在window 里面，后续放到app 内部
 window._matchPathMap = {}
+//先设置一个默认值
+window.$authNodes = [];
+window.checkAuth = function (auth) {
+  return window.$authNodes.indexOf(auth) > -1;
+}
 class Yoyo {
   childRoutes = [
     {
@@ -30,10 +35,10 @@ class Yoyo {
     },
   ]
 
-  add(module,req) {
+  add(module, req) {
     const self = this;
     try {
-      const router= req(`./${module}/router.js`);
+      const router = req(`./${module}/router.js`);
       const routes = [];
       _.each(router, (val, key) => {
         //保存自动触发的action 数据
@@ -44,7 +49,7 @@ class Yoyo {
           path: key,
           getComponent(state, cb) {
             self.model(req(`./${module}/${val.model}`));
-            cb(null,req(`./${module}/${val.page}`));
+            cb(null, req(`./${module}/${val.page}`));
           }
         })
       })
