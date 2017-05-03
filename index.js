@@ -30,12 +30,11 @@ class Yoyo {
     },
   ]
 
-  add(module) {
+  add(module,req) {
     const self = this;
     try {
-      const router = requireModule(module, 'router')
+      const router= req(`./${module}/router.js`);
       const routes = [];
-
       _.each(router, (val, key) => {
         //保存自动触发的action 数据
         if (val.actions) {
@@ -44,10 +43,8 @@ class Yoyo {
         routes.push({
           path: key,
           getComponent(state, cb) {
-            require.ensure([], (require) => {
-              self.model(requireModule(module, val.model));
-              cb(null, requireModule(module, val.page));
-            });
+            self.model(req(`./${module}/${val.model}`));
+            cb(null,req(`./${module}/${val.page}`));
           }
         })
       })
