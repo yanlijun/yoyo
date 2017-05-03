@@ -16,9 +16,7 @@ import Error from './lib/routes/error'
 
 moment.locale('zh-cn');
 const cached = {}
-function requireModule(module, type) {
-  return require(`./modules/${module}/${type}`)
-}
+
 //暂时放在window 里面，后续放到app 内部
 window._matchPathMap = {}
 //先设置一个默认值
