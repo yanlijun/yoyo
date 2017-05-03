@@ -5,6 +5,7 @@ import 'moment/locale/zh-cn';
 import { message } from 'antd';
 import 'nprogress/nprogress.css'
 import 'font-awesome/css/font-awesome.css'
+import { resolve } from 'path';
 import { Router, browserHistory, IndexRoute, Link } from 'dva/router';
 import './lib/styles/common.less';
 import { RequestError } from './request'
@@ -15,18 +16,45 @@ import Error from './lib/routes/error'
 
 moment.locale('zh-cn');
 const cached = {}
-// 1. Initialize
+function requireModule(module, type) {
+  return require(`./modules/${module}/${type}`)
+}
+//暂时放在window 里面，后续放到app 内部
+window._matchPathMap = {}
 class Yoyo {
-  registerModel=(obj) => {
-    const model = obj.default || obj;
-    if (!cached[model.namespace]) {
-      this.app.model(model);
-      cached[model.namespace] = 1;
-    }
-  }
+  childRoutes = [
+    {
+      path: '*',
+      name: 'error',
+      component: Error,
+    },
+  ]
 
   add(module) {
-    this.childRoutes.splice(0, 0, ...module(this.app, this.registerModel));
+    const self = this;
+    try {
+      const router = requireModule(module, 'router')
+      const routes = [];
+
+      _.each(router, (val, key) => {
+        //保存自动触发的action 数据
+        if (val.actions) {
+          _matchPathMap[key] = val.actions;
+        }
+        routes.push({
+          path: key,
+          getComponent(state, cb) {
+            require.ensure([], (require) => {
+              self.model(requireModule(module, val.model));
+              cb(null, requireModule(module, val.page));
+            });
+          }
+        })
+      })
+      this.childRoutes.splice(0, 0, ...routes);
+    } catch (e) {
+      throw e;
+    }
   }
 
   start(root) {
@@ -40,23 +68,20 @@ class Yoyo {
         childRoutes: this.childRoutes,
       }
       return (
-        <Router history={history} routes={routes} />
+        <Router history={history} routes={routes}/>
       )
     });
     this.app.start(root)
   }
 
-  model(model) {
-    this.app.model(model);
+  model(obj) {
+    const model = obj.default || obj;
+    if (!cached[model.namespace]) {
+      this.app.model(model);
+      cached[model.namespace] = 1;
+    }
   }
 
-  childRoutes = [
-    {
-      path: '*',
-      name: 'error',
-      component: Error,
-    },
-  ]
 
   constructor({ sysCode, domain }) {
     window.$config = {
