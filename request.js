@@ -35,7 +35,7 @@ function checkStatus(response) {
  * @return {object}           An object containing either "data" or "err"
  */
 export default function request(pathname, options = {}) {
-  const url = getRequestHost() + pathname;
+  const url = pathname.indexOf('/local') == -1 ? getRequestHost() + pathname : pathname;
   options.credentials = options.credentials || 'include';
   return fetch(url, options)
     .then(checkStatus)
