@@ -1,4 +1,5 @@
 import {Layout, Menu, Icon, Breadcrumb, Dropdown} from 'antd';
+import {Component } from 'react'
 import {Link} from 'dva/router';
 import {connect} from 'dva';
 import './standard.less';
@@ -62,91 +63,100 @@ const BreadcrumbConnect = connect(({layout}) => {
     </Breadcrumb>
   )
 })
-function Standard({
-  dispatch, children, collapsed,
-  user, menus, topMenus, currentSystem, openKeys, current,
-}) {
-  if (!user) {
-    return (
-      <div>登录中...</div>
-    )
-  }
-  function toggleCollapsed() {
-    dispatch({
-      type: 'layout/toggleCollapsed',
+class Standard extends Component{
+  componentDidMount(){
+    this.props.dispatch({
+      type:'layout/queryUser'
     })
   }
-
-
-  function onOpenChange(openKeys) {
-    dispatch({
-      type: 'layout/openMenu',
-      payload: openKeys,
-    })
-  }
-
-  const topMenusDropdown = (<Menu>
-    {topMenus.map((item) => {
+  render(){
+    const {
+      dispatch, children, collapsed,
+      user, menus, topMenus, currentSystem, openKeys, current,
+    }  = this.props;
+    if (!user) {
       return (
-        <Menu.Item key={item.code}>
-          <a href={item.url}>{item.name}</a>
-        </Menu.Item>
+        <div>登录中...</div>
       )
-    })}
-  </Menu>);
-  return (
-    <Layout className="layout">
-      <Header className="header">
-        <Link to="/" className="logo">
-          易居社区
-        </Link>
-        <div className={`companyName ${collapsed ? 'close' : ''}`}>
-          <span>易居社区增值服务集团</span>
-        </div>
-        <Icon
-          className={'trigger'}
-          type={collapsed ? 'menu-unfold' : 'menu-fold'}
-          onClick={toggleCollapsed}
-        />
-        <div className="pull-right">
-          <Dropdown overlay={userMenus}>
-            <a className="ant-dropdown-link" href="javascript:;">
-              {user.user_name} <Icon type="down"/>
-            </a>
-          </Dropdown>
-          &nbsp;&nbsp;&nbsp;
-          <Dropdown overlay={topMenusDropdown}>
-            <a className="ant-dropdown-link" href="javascript:;">
-              {currentSystem && currentSystem.name} <Icon type="down"/>
-            </a>
-          </Dropdown>
-        </div>
-      </Header>
-      <Layout>
-        <Sider
-          trigger={null}
-          collapsible
-          collapsed={collapsed}
-        >
-          <Menu
-            mode={collapsed ? 'vertical' : 'inline'} onOpenChange={onOpenChange}
-            openKeys={openKeys}
-            selectedKeys={current}
-            inlineIndent="12"
+    }
+    function toggleCollapsed() {
+      dispatch({
+        type: 'layout/toggleCollapsed',
+      })
+    }
+
+
+    function onOpenChange(openKeys) {
+      dispatch({
+        type: 'layout/openMenu',
+        payload: openKeys,
+      })
+    }
+
+    const topMenusDropdown = (<Menu>
+      {topMenus.map((item) => {
+        return (
+          <Menu.Item key={item.code}>
+            <a href={item.url}>{item.name}</a>
+          </Menu.Item>
+        )
+      })}
+    </Menu>);
+    return (
+      <Layout className="layout">
+        <Header className="header">
+          <Link to="/" className="logo">
+            易居社区
+          </Link>
+          <div className={`companyName ${collapsed ? 'close' : ''}`}>
+            <span>易居社区增值服务集团</span>
+          </div>
+          <Icon
+            className={'trigger'}
+            type={collapsed ? 'menu-unfold' : 'menu-fold'}
+            onClick={toggleCollapsed}
+          />
+          <div className="pull-right">
+            <Dropdown overlay={userMenus}>
+              <a className="ant-dropdown-link" href="javascript:;">
+                {user.user_name} <Icon type="down"/>
+              </a>
+            </Dropdown>
+            &nbsp;&nbsp;&nbsp;
+            <Dropdown overlay={topMenusDropdown}>
+              <a className="ant-dropdown-link" href="javascript:;">
+                {currentSystem && currentSystem.name} <Icon type="down"/>
+              </a>
+            </Dropdown>
+          </div>
+        </Header>
+        <Layout>
+          <Sider
+            trigger={null}
+            collapsible
+            collapsed={collapsed}
           >
-            {
-              menus.map(item => getMenuItem(item, current))
-            }
-          </Menu>
-        </Sider>
-        <Content className={'content'}>
-          <BreadcrumbConnect />
-          {children}
-        </Content>
+            <Menu
+              mode={collapsed ? 'vertical' : 'inline'} onOpenChange={onOpenChange}
+              openKeys={openKeys}
+              selectedKeys={current}
+              inlineIndent="12"
+            >
+              {
+                menus.map(item => getMenuItem(item, current))
+              }
+            </Menu>
+          </Sider>
+          <Content className={'content'}>
+            <BreadcrumbConnect />
+            {children}
+          </Content>
+        </Layout>
       </Layout>
-    </Layout>
-  );
+    );
+  }
 }
+
 
 export default connect(({layout}) => {
   return {
