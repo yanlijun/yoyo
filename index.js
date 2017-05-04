@@ -74,9 +74,6 @@ class Yoyo {
       )
     });
     this.app.start(root)
-    this.app._state.dispatch({
-      type'layout/queryUser'
-    })
   }
 
   model(obj) {
