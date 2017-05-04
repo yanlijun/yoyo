@@ -1,54 +1,55 @@
-.container {
+.accountInfoContainer {
   display: flex;
   background-color: #ececec !important;
   justify-content: space-between;
   padding: 0 !important;
-  margin-bottom:10px;
+  margin-bottom: 10px;
   color: #999;
   span {
-    color:#666;
+    color: #666;
   }
-}
 
-.balance, .card, .secure {
-  background-color: #fff;
-  flex: 1 1 auto;
-  padding: 10px 20px ;
-  margin-right: 10px;
-  border-radius: 4px;
-}
+  .balance, .card, .secure {
+    background-color: #fff;
+    flex: 1 1 auto;
+    padding: 10px 20px;
+    margin-right: 10px;
+    border-radius: 4px;
+  }
 
-.card {
-}
+  .card {
+  }
 
-.secure {
-}
+  .secure {
+  }
 
-.header {
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-  height: 55px;
-  border-bottom: 1px solid #ccc;
-  >div{
-    margin-bottom: 5px;
+  .header {
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    height: 55px;
+    border-bottom: 1px solid #ccc;
+    > div {
+      margin-bottom: 5px;
+    }
+    > span {
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: darken(@text-color, 10);
+    }
+    button {
+      span {
+        color: #fff;
+      }
+    }
   }
-  > span {
-    font-weight: bold;
-    font-size: 1.2rem;
-    color: darken(@text-color, 10);
+  .content {
+    > div {
+      margin-bottom: 5px;
+    }
   }
-  button{
-   span{
-     color:#fff;
-   }
+  .balanceMoney {
+    font-size: 18px;
+    color: #c81528;
   }
-}
-.content{
-  >div{
-    margin-bottom: 5px;
-  }
-}
-.balanceMoney {
-  font-size: 18px;
-  color: #c81528;
+
 }

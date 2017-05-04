@@ -1,19 +1,20 @@
-
-export const PAGESIZE = 10;
-
-
-export const APPTYPE = {
-  shihui: '实惠',
-  burter: '管家',
+export const ACCOUNTSECURITYLEVEL = {
+  1: {
+    className: 'text-danger',
+    text: '低',
+  },
+  2: {
+    className: 'text-info',
+    text: '中',
+  },
+  3: {
+    className: 'text-success',
+    text: '高',
+  },
 }
-
-export const PLATFORMS = {
-  android: '安卓',
-  ios: 'IOS',
-}
-export const VERSIONSTATUS = {
-  0: '未开启',
-  1: '运行中',
+export const ACCOUNTSTATUS = {
+  1: '正常',
+  2: '冻结',
 }
 
 /**
