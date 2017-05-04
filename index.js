@@ -41,12 +41,14 @@ class Yoyo {
       _.each(router, (val, key) => {
         //保存自动触发的action 数据
         if (val.actions) {
-          _matchPathMap[key] = val.actions;
+          window._matchPathMap[key] = val.actions;
+        }
+        if (val.model) {
+          self.model(req(`./${module}/${val.model}`));
         }
         routes.push({
           path: key,
           getComponent(state, cb) {
-            self.model(req(`./${module}/${val.model}`));
             cb(null, req(`./${module}/${val.page}`));
           }
         })
@@ -72,6 +74,9 @@ class Yoyo {
       )
     });
     this.app.start(root)
+    this.app._state.dispatch({
+      type'layout/queryUser'
+    })
   }
 
   model(obj) {

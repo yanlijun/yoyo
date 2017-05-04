@@ -1,5 +1,10 @@
 ##yoyo
 
+准备 yoyo-cli
+npm install -S git+http://git.eju-inc.com/shihui-ued/yoyo.git
+#   或者以ssh的方式
+npm install -S git+ssh://git@git.eju-inc.com:shihui-ued/yoyo.git
+
 基于react 的前端快速开发脚手架
 
 公开暴露

@@ -29,11 +29,11 @@ function getMenuItem(item, current = []) {
     )
   } else if (item.isMenu ) {
     return <Menu.Item key={item.code}>
-      <Link to={item.url}><Icon type={item.code}/>{item.name}</Link>
+      <Link to={item.url}><i className={item.icon}/>{item.name}</Link>
     </Menu.Item>
   } else if(current.indexOf(item.code) > -1){
     return <Menu.Item key={item.code}>
-      <a><Icon type={item.code}/>{item.name}</a>
+      <a><i className={item.icon}/>{item.name}</a>
     </Menu.Item>
   } else {
     return null;
